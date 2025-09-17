@@ -1,13 +1,13 @@
 const sgMail = require("@sendgrid/mail");
+require("dotenv").config();
 
-// Load API key from environment
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 class EmailService {
   static async sendEmail(to, subject, html) {
     const msg = {
       to,
-      from: process.env.SENDGRID_FROM, // must be verified in SendGrid
+      from: process.env.SENDGRID_FROM,
       subject,
       html,
     };
