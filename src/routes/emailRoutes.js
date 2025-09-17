@@ -4,18 +4,18 @@ const EmailService = require("../services/emailService");
 const router = express.Router();
 
 router.post("/send", async (req, res) => {
-  const { email, userId, apiKey, customerName, productName, renewalDate } =
+  const { email, phone, apiKey, customerName, productName, renewalDate } =
     req.body;
 
-  if (!email || !userId || !apiKey) {
+  if (!email || !phone || !apiKey) {
     return res
       .status(400)
-      .json({ error: "Email, userId, and apiKey are required" });
+      .json({ error: "Email, phone, and apiKey are required" });
   }
 
   const verifyUrl = `${
     process.env.CLIENT_URL
-  }/verify?userId=${encodeURIComponent(userId)}&apiKey=${encodeURIComponent(
+  }/verify?phone=${encodeURIComponent(phone)}&apiKey=${encodeURIComponent(
     apiKey
   )}`;
 
